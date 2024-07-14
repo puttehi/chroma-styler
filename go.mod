@@ -3,6 +3,7 @@ module github.com/puttehi/chroma-styler
 go 1.22.2
 
 require (
+	github.com/alecthomas/chroma v0.10.0
 	github.com/alecthomas/chroma/v2 v2.14.0
 	github.com/markkurossi/tabulate v0.0.0-20230223130100-d4965869b123
 )
