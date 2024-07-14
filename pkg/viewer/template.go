@@ -6,12 +6,10 @@ const Template = `<!DOCTYPE html>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Chroma style viewer</title>
-        <!--Page styles-->
-        <link href="css/style.css" rel="stylesheet">
         <!--User code styles-->
-        <link href="css/syntax.css" rel="stylesheet">
+        <link href="syntax.css" rel="stylesheet">
     </head>
-    <body>
+    <body style="background-color: #1D1D3D">
         {{- range .CodeBlocks -}}
         <div>
             {{- . -}}
