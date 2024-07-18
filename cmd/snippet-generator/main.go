@@ -101,10 +101,17 @@ func (ld LanguageData) toSample() TemplateSample {
 	titlecased := cases.Title(language.Und, cases.NoLower).String(ld.language)
 	functionName := strings.ReplaceAll(titlecased, "-", "_")
 
+	lexerName := ld.testInfo.Extension
+
+	// Shares .bf extension with brainfuck
+	if ld.language == "beef" {
+		lexerName = "beef"
+	}
+
 	return TemplateSample{
 		FunctionName: functionName,
 		Filename:     fmt.Sprintf("%s.go", ld.language),
-		LexerName:    ld.testInfo.Extension,
+		LexerName:    lexerName,
 		Code:         string(content),
 	}
 }
