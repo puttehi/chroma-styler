@@ -15,7 +15,7 @@ Try `chroma-styler` to
 - Dump all the Chroma XML entry->CSS class name entries
 - Generate a CSS file ready to ship
 
-![Screenshot of the viewer](./docs/example.png)
+<img src="./docs/example.png" width="644" height="768">
 
 ## Usage
 
@@ -43,3 +43,13 @@ go run cmd/chroma-styler/main.go -input data/catppuccin-machiato.xml > syntax.cs
 Replace `-input` with your Chroma-compatible XML file.
 
 > If you want to get your Neovim highlights into an XML file, you can get [inspiration from my config tool](https://github.com/puttehi/nvim-puttehi-dark/tree/main?tab=readme-ov-file#chroma-xml-generator).
+
+### Updating generated samples
+
+Bump the submodule commit and:
+
+```sh
+go generate ./...
+```
+
+Generator picks the first found sample.
