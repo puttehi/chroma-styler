@@ -1,0 +1,3 @@
+[submodule "data/sample-programs"]
+	path = data/sample-programs
+	url = https://github.com/TheRenegadeCoder/sample-programs

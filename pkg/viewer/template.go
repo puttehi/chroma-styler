@@ -10,9 +10,11 @@ const Template = `<!DOCTYPE html>
         <link href="syntax.css" rel="stylesheet">
     </head>
     <body style="background-color: #1D1D3D">
+        <h3 style="color: #EEEEEE">{{- .CSS -}}</h3>
         {{- range .CodeBlocks -}}
         <div>
-            {{- . -}}
+        <h3 style="color: #AAAAAA">{{- .Title -}}</h3>
+            {{- .Html -}}
         </div>
         {{- end -}}
     </body>

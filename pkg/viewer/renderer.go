@@ -2,6 +2,7 @@ package viewer
 
 import (
 	"bytes"
+	"fmt"
 
 	"github.com/alecthomas/chroma/v2/formatters/html"
 	"github.com/alecthomas/chroma/v2/styles"
@@ -19,6 +20,7 @@ func NewRenderer() ChromaRenderer {
 }
 
 func (cr ChromaRenderer) Format(sample code_samples.Sample) (string, error) {
+	fmt.Printf("Formatting %s\n", sample.Lexer.Config().Name)
 	it, err := sample.Lexer.Tokenise(nil, sample.Code)
 	if err != nil {
 		return sample.Code, err

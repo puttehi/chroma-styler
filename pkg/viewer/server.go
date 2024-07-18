@@ -15,8 +15,14 @@ type Server struct {
 	port   int
 }
 
+type CodeBlock struct {
+	Title string
+	Html  string
+}
+
 type TemplateData struct {
-	CodeBlocks []string
+	CSS        string
+	CodeBlocks []CodeBlock
 }
 
 func New(port int, cssFilePath string) Server {
@@ -46,13 +52,28 @@ func New(port int, cssFilePath string) Server {
 		panic(err)
 	}
 
-	r.GET("/", func(c *gin.Context) {
-		rendered, err := renderer.Format(code_samples.Go())
+	codeSamples := code_samples.CodeSamples
+	renderedBlocks := make([]CodeBlock, len(codeSamples))
+	for i, sample := range codeSamples {
+		if sample.Lexer == nil {
+			fmt.Printf("Lexer was nil, unsupported language, skipping...\n")
+			continue
+		}
+		rendered, err := renderer.Format(sample)
 		if err != nil {
 			panic(err)
 		}
+		renderedBlocks[i] = CodeBlock{
+			Title: sample.Lexer.Config().Name,
+			Html:  rendered,
+		}
+	}
+
+	r.GET("/", func(c *gin.Context) {
+
 		err = tpl.Execute(c.Writer, TemplateData{
-			CodeBlocks: []string{rendered, rendered},
+			CSS:        cssFilePath,
+			CodeBlocks: renderedBlocks,
 		})
 		if err != nil {
 			panic(err)
